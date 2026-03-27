@@ -33,7 +33,7 @@ console.log('\nVersion: ' + pkgJson.version + '\n');
 
 const run = async () => {
   try{
-  file.scanDir(process.cwd(),/\.(jpe?g|png)$/)
+  file.scanDir(process.cwd(),/\.(jpe?g|png)$/i)
   }
   catch(err){
     console.log('Error: '+ err)
