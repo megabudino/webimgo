@@ -41,10 +41,10 @@ const run = async () => {
   
   if (file.imageFiles.length !=0){
       if (argv.width && Number.isInteger(argv.width) && argv.width > 0){
-        resizer.doResizeAndOptimise(file.imageFiles, argv.width)   
+        await resizer.doResizeAndOptimise(file.imageFiles, argv.width)   
       }
       else if (argv.width == null){
-        resizer.runOptimisationOnly(file.imageFiles)
+        await resizer.runOptimisationOnly(file.imageFiles)
       }
       else{
         console.log(chalk.yellowBright('Width provided is not a positive integer!'))
