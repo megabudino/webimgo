@@ -2,9 +2,9 @@
 
 Batch image resizing and optimisation CLI tool.
 
-This is CLI tool is helpful for anyone who wants to quickly resize and optimise images in batch within a directory and its subdirectories.
+This CLI tool helps you quickly resize and optimise images in batch within a directory.
 
-It will replace those images with optimised ones.
+It replaces the original images with optimised ones after an interactive confirmation step.
 
 
 <br/>
@@ -47,14 +47,17 @@ sudo npm i webimgo -g --unsafe-perm flag
 
 ## Usage
 
-To optimise all images in a folder, simply point your terminal to that folder and type command `webimgo` then press 'Enter' key.
-This will compress all JPG/PNG images within that folder as well as its sub folders.
+By default, `webimgo` scans only the current directory. It does not enter subdirectories unless you explicitly pass `--recursive`.
+
+Before any files are modified, the CLI always shows a confirmation prompt with the target directory, mode, file count, and a sample of matching files.
+
+To optimise all images in the current folder, point your terminal to that folder and run:
 
 ```
  webimgo
  ```
 
-To resize width along with optimising images in a folder and its subfolder, simply type below command passing `<width>` parameter.
+To resize image width and optimise images in the current folder, pass `<width>`:
 
 ```
 webimgo -w <width>
@@ -62,15 +65,40 @@ webimgo -w <width>
 
 Replace `<width>` width with the amount of maximum width in pixels allowed.
 
+### Safety options
+
+Use `--recursive` to include subdirectories:
+
+```
+webimgo --recursive
+```
+
+Use `--force` only when you intentionally want to run from a high-risk directory such as `/`, `/Users`, `/home`, or your home directory:
+
+```
+webimgo --force
+```
+
+You can combine the options:
+
+```
+webimgo --recursive -w 1200
+```
+
 ![Webimgo default coommand](./assets/webimgo-base.gif)
 
 ### Examples
 
-E.g. To resize images width to 1200 pixels for all images with width more than 1200 pixels and to compress all images, use:
+To resize images to a maximum width of 1200 pixels in the current directory and compress them, use:
 ```
 webimgo -w 1200
 ``` 
-This will resize images width to 1200 pixels for all images with width more than 1200 pixels and compress all images.
+This resizes images wider than 1200 pixels and compresses all matching images in the current directory.
+
+To do the same recursively across subdirectories:
+```
+webimgo --recursive -w 1200
+```
 
 ![Webimgo width coommand](./assets/webimgo-width.gif)
 
